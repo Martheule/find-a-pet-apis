@@ -4,8 +4,8 @@ import express from "express";
 export const app = express();
 
 // middleware to parse request body
-app.use(expree.json());
+app.use(express.json());
 
 // mini app per resource
-app.use();
-app.use();
+// app.use();
+// app.use();
