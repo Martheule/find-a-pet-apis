@@ -1,11 +1,12 @@
 {
-  "name": "pet-platform",
+  "name": "find-a-pet-apis",
   "version": "1.0.0",
   "description": "This is an ecomm to buy pets",
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon --env-file=.env app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Paramveer Marwah",
