@@ -1,1 +1,2 @@
-The exported sequelize const needs to be imported in the Model since that will connect the Model to the db
+The exported sequelize const needs to be imported in the Model since 
+that will connect the Model to the db.
