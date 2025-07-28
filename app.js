@@ -1,4 +1,7 @@
 import express from "express";
+import { DataTypes } from 'sequelize';
+import Category from ‘./Category.js’;
+import Product from './Product.js';
 
 // middleware to parse request body
 app.use(express.json());
@@ -8,15 +11,9 @@ app.use(express.json());
 // app.use();
 
 // products (martha)
-const Category = require('./Category');
-const Product = require('./Product');
+app.use(‘/products’, productRouter);
 
-Category.hasMany(Product, { foreignKey: 'categoryId' });
-Product.belongsTo(Category, { foreignKey: 'categoryId' });
-
-const productRouter = require('./routers/productRouter');
-app.use('/products', productRouter);
-
+export { Category, Product };
 
 //app localhost
 const express = require('express');
