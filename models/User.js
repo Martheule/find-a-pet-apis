@@ -4,11 +4,11 @@ import sequelize from '../database/find-a-pet.js';
 const User = sequelize.define('User', {
   name: {
     type: DataTypes.STRING,
-    allownull: false,
+    allowNull: false,
   },
   email: {
     type: DataTypes.STRING,
-    allownull: false,
+    allowNull: false,
     validate: {
       isEmail: true,
     },
