@@ -1,13 +1,13 @@
-import { app } from './app.js';
-import dotenv from 'dotenv';
+import { app } from "./app.js";
+import dotenv from "dotenv";
+// import { setupAssociations } from "./database/associations.js";
 
 dotenv.config();
 
-const port = process.env.PORT || 8000;
+// TODO: Import Associations just call it
+setupAssociations();
 
-app.get('/', (req, res) => {
-  res.send('if you can read this... Good Job. Server is working! ');
-});
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`);
