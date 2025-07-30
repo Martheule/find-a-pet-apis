@@ -1,6 +1,6 @@
 import { app } from "./app.js";
 import dotenv from "dotenv";
-// import { setupAssociations } from "./database/associations.js";
+import { setupAssociations } from "./database/associations.js";
 
 dotenv.config();
 
