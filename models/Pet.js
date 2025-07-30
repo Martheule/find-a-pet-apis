@@ -14,7 +14,6 @@ const Pet = sequelize.define("Pet", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  is_adopted: Boolean,
   description: {
     type: DataTypes.TEXT,
   },

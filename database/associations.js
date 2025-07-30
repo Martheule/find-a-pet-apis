@@ -1,4 +1,6 @@
-import Category from "../models/Category";
+import Category from "../models/Category.js";
+import Pet from "../models/Pet.js";
+import User from "../models/User.js";
 
 export const setupAssociations = function () {
   // Pet belongs to a User (owner)
