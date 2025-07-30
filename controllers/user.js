@@ -1,72 +1,48 @@
 import User from '../models/User.js';
 
 const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.findAll();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: 'Could not fetch Users' });
-  }
+  const users = await User.findAll();
+  res.json(users);
 };
 
 const getSingleUser = async (req, res) => {
-  try {
-    const id = +req.params.id;
-    const user = await User.findByPk(id);
-    if (!user) return res.status(404).json({ error: 'user not found' });
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ message: 'something went wrong' });
-  }
+  const {
+    params: { id },
+  } = req;
+  const user = await User.findByPk(id);
+  if (!user) throw new Error('User not found', { cause: 404 });
+  res.json(user);
 };
 
 const createUser = async (req, res) => {
-  try {
-    const {
-      body: { name, email, password },
-    } = req;
-    if (!name || !email || !password) {
-      return res.status(400).json({
-        message: 'name, email, and password are required',
-      });
-    }
-    const user = await User.create(req.body);
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ error: 'something went wrong' });
-  }
+  const {
+    sanitizedBody: { email },
+  } = req;
+  const found = await User.findOne({ where: { email } });
+  if (found)
+    throw new Error('User with that email already exists', { cause: 401 });
+  const user = await User.create(req.sanitizedBody);
+  res.json(user);
 };
 
 const updateUser = async (req, res) => {
-  try {
-    const {
-      body: { name, email, password },
-      params: { id },
-    } = req;
-    if (!name || !email || !password)
-      return res
-        .status(400)
-        .json({ message: 'name, email and password are required' });
-    const user = await User.findByPk(id);
-    if (!user) return res.status(404).json('user nt found');
-    await user.update(req.body);
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ error: 'something went wrong' });
-  }
+  const {
+    params: { id },
+  } = req;
+  const user = await User.findByPk(id);
+  if (!user) throw new Error('User not found', { cause: 404 });
+  await user.update(req.body);
+  res.json(user);
 };
 
 const deleteUser = async (req, res) => {
-  try {
-    const {
-      params: { id },
-    } = req;
-    const user = await User.findByPk(id);
-    if (!user) return res.status(404).json({ error: 'user not found' });
-    await user.destroy();
-    res.json({ message: 'user deleted' });
-  } catch (error) {
-    res.status(500).json({ message: 'something went wrong' });
-  }
+  const {
+    params: { id },
+  } = req;
+  const user = await User.findByPk(id);
+  if (!user) throw new Error('User not found', { cause: 404 });
+  await user.destroy();
+  res.json({ message: 'User deleted' });
 };
+
 export { getAllUsers, getSingleUser, createUser, updateUser, deleteUser };
