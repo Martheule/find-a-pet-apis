@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "password": "password123"
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "email": "bob@example.com",
+      "password": "password123"
+    },
+    {
+      "id": 3,
+      "name": "Charlie Brown",
+      "email": "charlie@example.com",
+      "password": "password123"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Dog"
+    },
+    {
+      "id": 2,
+      "name": "Cat"
+    },
+    {
+      "id": 3,
+      "name": "Bird"
+    }
+  ],
+  "pets": [
+    {
+      "id": 1,
+      "name": "Buddy",
+      "age": 3,
+      "breed": "Golden Retriever",
+      "description": "Friendly and playful dog.",
+      "imageUrl": "https://placedog.net/500",
+      "userId": 1,
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "name": "Whiskers",
+      "age": 2,
+      "breed": "Siamese",
+      "description": "Loves climbing and cuddles.",
+      "imageUrl": "https://placekitten.com/500/500",
+      "userId": 2,
+      "categoryId": 2
+    },
+    {
+      "id": 3,
+      "name": "Sky",
+      "age": 1,
+      "breed": "Parakeet",
+      "description": "Small, colorful, and loves to sing.",
+      "imageUrl": "https://placebear.com/400/300",
+      "userId": 3,
+      "categoryId": 3
+    }
+  ]
+}
