@@ -1,7 +1,8 @@
 import express from "express";
 import { DataTypes } from 'sequelize';
 import Category from ‘./Category.js’;
-import Product from './Product.js';
+import sequelize from "./database/find-a-pet.js";
+import { Pet } from "./models/pet.js";
 
 // middleware to parse request body
 app.use(express.json());
@@ -10,10 +11,10 @@ app.use(express.json());
 // app.use();
 // app.use();
 
-// products (martha)
-app.use(‘/products’, productRouter);
+// pets (martha)
+app.use(‘/pet’, productRouter);
 
-export { Category, Product };
+export { Category, Pet };
 
 //app localhost
 const express = require('express');
