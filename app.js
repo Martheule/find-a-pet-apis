@@ -1,27 +1,21 @@
 import express from "express";
-import { DataTypes } from 'sequelize';
-import Category from ‘./Category.js’;
-import sequelize from "./database/find-a-pet.js";
-import { Pet } from "./models/pet.js";
+import userRouter from "./routes/userRouter.js";
+import categoryRouter from "./routes/categoryRouter.js";
+import errorHandler from "./middlewares/errorHandler.js";
+import petRouter from "./routes/petRouter.js";
+import messageRoutes from "./routes/messageRouter.js";
 
-// middleware to parse request body
+export const app = express();
+
 app.use(express.json());
 
-// mini app per resource
-// app.use();
-// app.use();
+app.use("/users", userRouter);
+app.use("/category", categoryRouter);
+app.use("/pets", petRouter);
+app.use("/api/messages", messageRoutes);
 
-// pets (martha)
-app.use(‘/pet’, productRouter);
-
-export { Category, Pet };
-
-//app localhost
-const express = require('express');
-const app = express();
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.use((req, res) => {
+  throw new Error("Page Not Found!", { cause: 404 });
 });
+
+app.use(errorHandler);

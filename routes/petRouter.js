@@ -2,7 +2,10 @@
 
 // routes/petRouter.js 
 
-import express from 'express';
+import petSchema from "../schemas/petSchema.js";
+import validateSchema from "../middlewares/validateSchema.js";
+
+import {Router} from 'express';
 import {
   getAllPets,
   getPetById,
@@ -11,19 +14,18 @@ import {
   deletePet,
 } from '../controllers/petController.js';
 
-import {
-  createPetSchema,
-  updatePetSchema,
-} from '../schemas/petSchemas.js';
+//import {
+//  petSchema,
+//} from '../schemas/petSchemas.js';
 
 import validate from '../middleware/validate.js';
 
-const router = express.Router();
+const petRouter = Router();
 
-router.get('/', getAllPets);
-router.get('/:id', getPetById);
-router.post('/', validate(createPetSchema), createPet);
-router.put('/:id', validate(updatePetSchema), updatePet);
-router.delete('/:id', deletePet);
+petRouter.get('/', getAllPets);
+petRouter.get('/:id', getPetById);
+petRouter.post('/', validate(petSchema), createPet);
+petRouter.put('/:id', validate(petSchema), updatePet);
+petRouter.delete('/:id', deletePet);
 
 export default petRouter;
