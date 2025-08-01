@@ -2,6 +2,7 @@ import Category from "../models/Category.js";
 import Pet from "../models/Pet.js";
 import User from "../models/User.js";
 import Message from "../models/Message.js";
+import sequelize from "./find-a-pet.js";
 
 export const setupAssociations = function () {
   // Pet belongs to a User (owner)
@@ -21,3 +22,5 @@ export const setupAssociations = function () {
 
   Message.belongsTo(Pet, { foreignKey: "petId" });
 };
+
+sequelize.sync({ alter: true });
